@@ -22,10 +22,10 @@ def tempdetails(request, temp_id):
                          {queryset.sen_code}""")
 
 
-def display_press(request):
-    
-    
-     return render(request, "web/sensor_edit.html")
+def display_humid(request):
+    queryset = Werte.objects.all()
+    humidslist = list(queryset)
+    return render(request, "web/humids.html", {"humidslist": humidslist})
 def display_temps(request):
     print("display_temps")
     if request.method == "POST":
