@@ -23,9 +23,11 @@ def tempdetails(request, temp_id):
 
 
 def display_humid(request):
+    form = HumidsFilterForm()
+    form.lowerVal = 4
     queryset = Werte.objects.all()
     humidslist = list(queryset)
-    return render(request, "web/humids.html", {"humidslist": humidslist})
+    return render(request, "web/humids.html", {"form": form, "humidslist": humidslist})
 def display_temps(request):
     print("display_temps")
     if request.method == "POST":
