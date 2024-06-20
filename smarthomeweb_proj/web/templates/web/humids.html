@@ -27,19 +27,34 @@
                 <input type="submit" value="Filter...">
             </form>
         </div>
-        <ul>
-            {% for h in humidslist %}
-            <li>
-                {{ h.id }},
-                {{ h.luftfeuchte }},
-                {{h.sen.sen_raum}},
-                {{h.datum}},
-                <a href="{{h.sen.sen_id}}/">
-                    {{h.sen}}
-                </a>
-            </li>
-            {% endfor %}
-        </ul>
+        <div class="container mt-5">
+            <h1 class="mb-4">Sensor Data</h1>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>luftfeuchte</th>
+                        <th>Raum</th>
+                        <th>Datum</th>
+                        <th>Sensor ID</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for h in humidslist %}
+                    <tr>
+                        <td>{{ h.id }}</td>
+                        <td>{{ h.luftfeuchte }}</td>
+                        <td>{{ h.sensor.sen_raum}}</td>
+                        <td>{{ h.datum }}</td>
+                        <td><a href="{{h.sensor.id}}/">
+                            {{h.sen}}
+                            Details...
+                        </a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
     </div>
 </body>
 </html>
