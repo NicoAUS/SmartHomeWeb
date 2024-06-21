@@ -18,54 +18,34 @@
 </head>
 
 <body>
-    <div class="dynamic-form">
-        <h3>Sensor Form</h3>
-        <form method="post" action="{% url 'sensor_form' %}">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit">Submit</button>
-        </form>
-    </div>
-    <div class="content-sensor">
-        <div class="dynamic-list">
-            <h3>Sensors List</h3>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Nr°</th>
-                        <th>Raum</th>
-                        <th>IP</th>
-                        <th>Code</th>
-                        <th>Versionsnummer</th>
-                        <th>Action</th>
-
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for sensor in sensors %}
-                    <tr>
-                        <td>{{ forloop.counter }}</td>
-                        <td>{{ sensor.sen_raum }}</td>
-                        <td>{{ sensor.sen_ip }}</td>
-                        <td>{{ sensor.sen_code }}</td>
-                        <td>{{ sensor.sen_versionsnummer }}</td>
-                        <td>
-                            <form action="/edit/1" method="post" class="d-inline">
-                                {% csrf_token %}
-                                <button type="submit" class="edit-btn">Edit</button>
-                            </form>
-                            <form action="/delete/1" method="" class="d-inline">
-                                {% csrf_token %}
-                                <button type="submit" class="delete-btn">Delete</button>
-                            </form>
-                        </td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
-        
-        
+    <div class="container mt-5 col-8 align-self-center">
+        <h1 class="mb-4 text-center">Sensor Data</h1>
+        <table class="table text-center table-hover">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Luftdruck</th>
+                    <th>Raum</th>
+                    <th>Datum</th>
+                    <th>Sensor ID</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for p in pressList %}
+                <tr>
+                    <td>{{ p.id }}</td>
+                    <td>{{ p.luftdruck }}</td>
+                    <td>{{ p.sensor.sen_raum}}</td>
+                    <td>{{ p.datum }}</td>
+                    <td><a href="{{p.sensor.id}}/">
+                        {{p.sen}}
+                        Details...
+                    </a></td>
+                    
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     </div>
 </body>
 

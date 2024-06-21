@@ -31,8 +31,19 @@ def display_sensors(request):
             return HttpResponseRedirect('/')
     else:
         form = SensorCreateEditModelForm()
-    return render(request, 'web/sensors.html', {'sensors': sensorsList, 'form': form})
-
+    return render(request, 'web/sensors.html', {"title":"Sensors",'sensors': sensorsList, 'form': form})
+def display_showpress(request):
+    queryset = Werte.objects.all()
+    pressList = list(queryset)
+    return render(request, "web/press.html", {"title":"Press", "pressList": pressList})
+    
+def pressdetails(request,press_id):
+    print(press_id + "Press Details")
+    queryset = Sensor.objects.get(pk=press_id)
+    return HttpResponse(f"""Press Details for Sensor-ID {press_id}:
+                         {queryset.sen_raum}, 
+                         {queryset.sen_ip},
+                         {queryset.sen_code}""")
 def display_humid(request):
     form = HumidsFilterForm()
     form.lowerVal = 4
