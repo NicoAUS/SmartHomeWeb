@@ -27,7 +27,7 @@ def display_humid(request):
     form.lowerVal = 4
     queryset = Werte.objects.all()
     humidslist = list(queryset)
-    return render(request, "web/humids.html", {"form": form, "humidslist": humidslist})
+    return render(request, "web/humids.html", {"title":"Humids","form": form, "humidslist": humidslist})
 def humiddetails(request,humid_id):
     print(humid_id + "Humid Details")
     queryset = Sensor.objects.get(pk=humid_id)
@@ -75,4 +75,4 @@ def display_temps(request):
         queryset = Werte.objects.all()
         tempListe = list(queryset)
         #print(dict(queryset))
-        return render(request, "web/temps.html", {"form": form, "tempslist": tempListe})
+        return render(request, "web/temps.html", {"title":"Temps","form": form, "tempslist": tempListe})
