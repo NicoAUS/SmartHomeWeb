@@ -14,20 +14,6 @@
         https://getbootstrap.com/docs/5.3/getting-started/javascript/#data-attributes
 
     -->
-    <style>
-        .center-form {
-            max-width: 600px;
-            margin: auto;
-            padding: 20px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            background-color: #f9f9f9;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        .form-title {
-            text-align: center;
-        }
-    </style>
 </head>
 
 <body>
@@ -57,7 +43,8 @@
                         <th>Raum</th>
                         <th>Datum</th>
                         <th>Sensor ID</th>
-                        <th>Action</th>
+                        <th>Sensor Code</th>
+                        <th>Sensor Versionsnummer</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -71,16 +58,8 @@
                             {{h.sen}}
                             Details...
                         </a></td>
-                        <td>
-                            <form action="/edit/1" method="post" class="d-inline">
-                                {% csrf_token %}
-                                <button type="submit" class="btn btn-warning">Edit</button>
-                            </form>
-                            <form action="/delete/1" method="post" class="d-inline">
-                                {% csrf_token %}
-                                <button type="submit" class="btn btn-danger">Delete</button>
-                            </form>
-                        </td>
+                        <td>{{ h.sensor.sen_code}}</td>
+                        <td>{{ h.sensor.sen_versionsnummer}}</td>
                     </tr>
                     {% endfor %}
                 </tbody>

@@ -1,0 +1,9 @@
+.edit-btn{
+    background-color: yellow;
+}
+.delete-btn{
+    background-color: red;
+}
+.content-sensor{
+    grid-row: 3 / 5;
+}

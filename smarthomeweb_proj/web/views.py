@@ -23,6 +23,7 @@ def tempdetails(request, temp_id):
 
 def display_sensors(request):
     sensors = Sensor.objects.all()
+    sensorsList = list(sensors)
     if request.method == 'POST':
         form = SensorCreateEditModelForm(request.POST)
         if form.is_valid():
@@ -30,8 +31,7 @@ def display_sensors(request):
             return HttpResponseRedirect('/')
     else:
         form = SensorCreateEditModelForm()
-    return render(request, 'web/sensors.html', {'sensors': sensors, 'form': form})
-    return render(request, "web/sensors.html")
+    return render(request, 'web/sensors.html', {'sensors': sensorsList, 'form': form})
 
 def display_humid(request):
     form = HumidsFilterForm()
