@@ -28,6 +28,13 @@ def display_humid(request):
     queryset = Werte.objects.all()
     humidslist = list(queryset)
     return render(request, "web/humids.html", {"form": form, "humidslist": humidslist})
+def humiddetails(request,humid_id):
+    print(humid_id + "Humid Details")
+    queryset = Sensor.objects.get(pk=humid_id)
+    return HttpResponse(f"""Humid Details for Sensor-ID {humid_id}:
+                         {queryset.sen_raum}, 
+                         {queryset.sen_ip},
+                         {queryset.sen_code}""")
 def display_temps(request):
     print("display_temps")
     if request.method == "POST":
