@@ -1,4 +1,4 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 from .models import Sensor, Werte
 from web.forms.TempsFilterForm import TempsFilterForm
@@ -21,6 +21,17 @@ def tempdetails(request, temp_id):
                          {queryset.sen_ip},
                          {queryset.sen_code}""")
 
+def display_sensors(request):
+    sensors = Sensor.objects.all()
+    if request.method == 'POST':
+        form = SensorCreateEditModelForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/')
+    else:
+        form = SensorCreateEditModelForm()
+    return render(request, 'web/sensors.html', {'sensors': sensors, 'form': form})
+    return render(request, "web/sensors.html")
 
 def display_humid(request):
     form = HumidsFilterForm()
