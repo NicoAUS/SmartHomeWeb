@@ -15,5 +15,6 @@ urlpatterns = [
     path("readbyid/<str:werte_id>/", views.readById, name="readById"),
     path("update/<str:werte_id>/", views.update, name="update"),
     path("delete/<str:werte_id>/", views.delete, name="delete"),
+    path("readAll/", views.readAll, name="readAll")
 
 ]
